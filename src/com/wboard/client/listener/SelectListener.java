@@ -12,8 +12,8 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-import com.wboard.client.object.Drawing;
-import com.wboard.client.object.WClientObject;
+import com.wboard.client.model.drawable.Drawing;
+import com.wboard.client.model.drawable.WClientObject;
 import com.wboard.client.ui.WBoard;
 import com.wboard.client.ui.WBoard.MODE;
 

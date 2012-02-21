@@ -6,7 +6,7 @@ package com.wboard.client.listener;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-import com.wboard.client.object.Shape.SHAPETYPE;
+import com.wboard.client.model.drawable.Shape.SHAPETYPE;
 import com.wboard.client.ui.WBoard;
 
 /**

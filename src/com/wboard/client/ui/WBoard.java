@@ -7,9 +7,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Canvas;
-import com.wboard.client.object.WClientObject;
-import com.wboard.client.util.SALAD;
-import com.wboard.user.User;
+
+import com.wboard.client.model.drawable.WClientObject;
+import com.wboard.client.util.Constants;
+import com.wboard.common.model.User;
 
 
 
@@ -59,9 +60,9 @@ public class WBoard {
 		prevMode = this.mode;
 		
 		selected = null;
-		lineColor = SALAD.BLACK;
-		faceColor = SALAD.WHITE;
-		lineWidth = SALAD.DEFAULT_LINE;
+		lineColor = Constants.BLACK;
+		faceColor = Constants.WHITE;
+		lineWidth = Constants.DEFAULT_LINE;
 		lineCap = SWT.CAP_ROUND;
 		
 

@@ -3,6 +3,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/swt-3_6_2-win32-x86.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/WBoard-common"/>
+	<classpathentry kind="lib" path="lib/hbase-0.92.0.jar"/>
+	<classpathentry kind="lib" path="lib/hadoop-core-0.20.205.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/wboard-common"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -12,12 +12,12 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
 
-import com.wboard.client.object.Shape;
-import com.wboard.client.object.Shape.SHAPETYPE;
-import com.wboard.client.object.shape.Arrow;
+import com.wboard.client.model.drawable.Shape;
+import com.wboard.client.model.drawable.Shape.SHAPETYPE;
+import com.wboard.client.model.drawable.shape.Rectangle;
 import com.wboard.client.ui.WBoard;
 import com.wboard.client.ui.WBoard.MODE;
-import com.wboard.client.util.SALAD;
+import com.wboard.client.util.Constants;
 
 
 public class ShapeListener implements Listener {
@@ -87,19 +87,19 @@ public class ShapeListener implements Listener {
 					gc.drawLine(startX, startY, endX, endY);
 				}
 				else if(shapeType == SHAPETYPE.OVAL){
-					if(wBoard.getFaceColor()!= null && !wBoard.getFaceColor().equals(SALAD.WHITE)){	// WHITE 일때 투명
+					if(wBoard.getFaceColor()!= null && !wBoard.getFaceColor().equals(Constants.WHITE)){	// WHITE 일때 투명
 						gc.fillOval(startX, startY, width, height);						
 					}
 					gc.drawOval(startX, startY, width, height);
 				}
 				else if(shapeType == SHAPETYPE.RECTANGLE){
-					if(wBoard.getFaceColor()!=null && !wBoard.getFaceColor().equals(SALAD.WHITE)){
+					if(wBoard.getFaceColor()!=null && !wBoard.getFaceColor().equals(Constants.WHITE)){
 						gc.fillRectangle(startX, startY, width, height);
 					}
 					gc.drawRectangle(startX, startY, width, height);
 				}
 				else if(shapeType == SHAPETYPE.TRIANGLE){
-					if(wBoard.getFaceColor()!=null  && !wBoard.getFaceColor().equals(SALAD.WHITE)){
+					if(wBoard.getFaceColor()!=null  && !wBoard.getFaceColor().equals(Constants.WHITE)){
 						gc.fillPolygon(new int[]{startX + width / 2, startY,	// 삼각형을 그리기 위한 int array
 								startX, endY, endX, endY});
 					}
@@ -108,7 +108,7 @@ public class ShapeListener implements Listener {
 				}
 
 				else if(shapeType == SHAPETYPE.ARROW){
-					if(wBoard.getFaceColor()!=null && !wBoard.getFaceColor().equals(SALAD.WHITE)){
+					if(wBoard.getFaceColor()!=null && !wBoard.getFaceColor().equals(Constants.WHITE)){
 						gc.fillPolygon(new int[]{startX, startY + height/3,
 								startX,	startY + (2*height)/3,
 								startX + (2*width)/3, startY + (2*height)/3,
@@ -134,7 +134,7 @@ public class ShapeListener implements Listener {
 				Shape shape = null;
 				switch(shapeType){
 					case ARROW: 
-						shape = new Arrow(new Point(startX, startY), new Point(endX, endY), wBoard.getLineColor(), wBoard.getFaceColor());
+						shape = new Rectangle(new Point(startX, startY), new Point(endX, endY), wBoard.getLineColor(), wBoard.getFaceColor());
 					//TODO: add more shape
 				}
 				if(shape != null){

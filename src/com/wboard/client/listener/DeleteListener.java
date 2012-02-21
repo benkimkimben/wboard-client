@@ -8,10 +8,10 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
 
-import com.wboard.client.object.WClientObject;
+import com.wboard.client.model.drawable.WClientObject;
 import com.wboard.client.ui.WBoard;
 
-//import com.wboard.client.util.SALAD;
+//import com.wboard.common.client.util.SALAD;
 
 public class DeleteListener implements Listener {
 

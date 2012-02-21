@@ -32,18 +32,14 @@ import com.wboard.client.listener.ModeSettingListener;
 import com.wboard.client.listener.SelectListener;
 import com.wboard.client.listener.ShapeListener;
 import com.wboard.client.listener.ShapeSettingListener;
-import com.wboard.client.listener.TextListener;
-import com.wboard.client.object.Drawing;
-import com.wboard.client.object.Shape;
-import com.wboard.client.object.Text;
-import com.wboard.client.object.WClientObject;
-import com.wboard.client.object.Shape.SHAPETYPE;
-import com.wboard.client.object.WClientObject.OBJTYPE;
-import com.wboard.client.object.shape.Line;
+import com.wboard.client.model.drawable.Drawing;
+import com.wboard.client.model.drawable.Shape;
+import com.wboard.client.model.drawable.WClientObject;
+import com.wboard.client.model.drawable.Shape.SHAPETYPE;
+import com.wboard.client.model.drawable.WClientObject.OBJTYPE;
+import com.wboard.client.model.drawable.shape.Line;
 import com.wboard.client.ui.WBoard.MODE;
-import com.wboard.client.util.SALAD;
-
-
+import com.wboard.client.util.Constants;
 
 public class BoardGUI {
 
@@ -98,7 +94,7 @@ public class BoardGUI {
 	public void addToolbar(WBoard wBoard){	
 		// 툴바 용 컴포짓
 		Composite toolComposite = new Composite(mainShell, SWT.NONE);
-		toolComposite.setBounds(MAIN_SHELL_X, MAIN_SHELL_Y, MAIN_SHELL_WIDTH, SALAD.MENU_HEIGHT);
+		toolComposite.setBounds(MAIN_SHELL_X, MAIN_SHELL_Y, MAIN_SHELL_WIDTH, Constants.MENU_HEIGHT);
 		// 툴바
 		ToolBar toolBar = new ToolBar(toolComposite, SWT.HORIZONTAL | SWT.CENTER);
 		toolBar.setBounds(toolComposite.getClientArea());
@@ -161,20 +157,19 @@ public class BoardGUI {
 		
 		// mainShell(mainComposite) 
 		Composite mainComposite = new Composite(mainShell, SWT.NONE);
-		mainComposite.setBounds(MAIN_SHELL_X, MAIN_SHELL_Y + SALAD.ICON_SIZE,
-				MAIN_SHELL_WIDTH - (SALAD.ICON_SIZE + SALAD.CLERK_SIZE + SALAD.GUI_OFFSET), 
-				MAIN_SHELL_HEIGHT - (SALAD.ICON_SIZE + SALAD.GUI_OFFSET));
+		mainComposite.setBounds(MAIN_SHELL_X, MAIN_SHELL_Y + Constants.ICON_SIZE,
+				MAIN_SHELL_WIDTH - (Constants.ICON_SIZE + Constants.CLERK_SIZE + Constants.GUI_OFFSET), 
+				MAIN_SHELL_HEIGHT - (Constants.ICON_SIZE + Constants.GUI_OFFSET));
 		
 		 
 
 		Composite canvasComposite = new Composite(mainComposite, SWT.NONE);
-		canvasComposite.addListener(SWT.FocusOut, new TextListener(wBoard));
 		canvasComposite.setBounds(mainComposite.getClientArea());
 
 		/******** The creation of the Canvas *********/
 		canvas.setParent(canvasComposite);
 		canvas.setBounds(canvasComposite.getClientArea());
-		canvas.setBackground(SALAD.WHITE);
+		canvas.setBackground(Constants.WHITE);
 
 		// 그리기 이벤트 리스너
 		DrawingListener drawingListener = new DrawingListener(wBoard);
@@ -199,23 +194,15 @@ public class BoardGUI {
 
 		// 객체 삭제 이벤트 리스너
 		canvas.addListener(SWT.KeyDown, new DeleteListener(wBoard));
-
-		// 텍스트박스 삽입 이벤트 리스너
-		TextListener textInputListener = new TextListener(wBoard);
-		canvas.addListener(SWT.MouseDown, textInputListener);
-		canvas.addListener(SWT.MouseMove, textInputListener);
-		canvas.addListener(SWT.MouseUp, textInputListener);
-		canvas.addListener(SWT.Paint, textInputListener);
-		
 		
 	}
 	
 	// 객체를 관리할 수 있는 GUI
 	public void addObjectControl(WBoard wBoard ){
 		Composite objectComposite = new Composite(mainShell, SWT.TOOL);
-		objectComposite.setBounds(MAIN_SHELL_WIDTH - (SALAD.CLERK_SIZE + SALAD.GUI_OFFSET),
-				SALAD.GUI_OFFSET,
-				SALAD.CLERK_SIZE, 
+		objectComposite.setBounds(MAIN_SHELL_WIDTH - (Constants.CLERK_SIZE + Constants.GUI_OFFSET),
+				Constants.GUI_OFFSET,
+				Constants.CLERK_SIZE, 
 				MAIN_SHELL_HEIGHT);
 
 		Rectangle objectListArea = objectComposite.getClientArea();
@@ -224,26 +211,26 @@ public class BoardGUI {
 		CLabel label = new CLabel(objectComposite, SWT.NONE);
 		label.setFont(wBoard.getBoardFont());
 		label.setText("Object List");
-		label.setBounds(objectListArea.x, objectListArea.y,	SALAD.CLERK_SIZE - SALAD.GUI_OFFSET - 50,  35);
+		label.setBounds(objectListArea.x, objectListArea.y,	Constants.CLERK_SIZE - Constants.GUI_OFFSET - 50,  35);
 
 		// add object list to objectComposite
 		itemList = new List(objectComposite, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 		itemList.setFont(wBoard.getBoardFont());
 		itemList.addListener(SWT.MouseDown, new ListSelectionListener(wBoard));
-		itemList.setBounds(objectListArea.x, objectListArea.y  + 70, SALAD.CLERK_SIZE - SALAD.GUI_OFFSET, (MAIN_SHELL_HEIGHT / 2 - SALAD.TABITEM_SIZE) - 50);
+		itemList.setBounds(objectListArea.x, objectListArea.y  + 70, Constants.CLERK_SIZE - Constants.GUI_OFFSET, (MAIN_SHELL_HEIGHT / 2 - Constants.TABITEM_SIZE) - 50);
 		
 		// add user list label to objectComposite
 		CLabel uListLabel = new CLabel(objectComposite, SWT.NONE);
 		uListLabel.setFont(new Font(mainShell.getDisplay(), 
 				"consolas", 17, SWT.BOLD));
 		uListLabel.setText("User List");
-		uListLabel.setBounds(objectListArea.x, SALAD.ULISTTITLE_Y,	SALAD.CLERK_SIZE - SALAD.GUI_OFFSET,  35);
+		uListLabel.setBounds(objectListArea.x, Constants.ULISTTITLE_Y,	Constants.CLERK_SIZE - Constants.GUI_OFFSET,  35);
 		
 		// add user list to objectComposite
 		userList = new List(objectComposite, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 		userList.setFont(wBoard.getBoardFont());
 		userList.addListener(SWT.MouseDown, new ListSelectionListener(wBoard));
-		userList.setBounds(objectListArea.x, SALAD.USERLIST_Y ,	SALAD.CLERK_SIZE - SALAD.GUI_OFFSET, SALAD.USERLIST_SIZE_Y);
+		userList.setBounds(objectListArea.x, Constants.USERLIST_Y ,	Constants.CLERK_SIZE - Constants.GUI_OFFSET, Constants.USERLIST_SIZE_Y);
 
 		
 		objectComposite.pack();
@@ -282,11 +269,7 @@ public class BoardGUI {
 				Shape shape = (Shape)wcObject;
 				shape.draw(gc);
 			}
-			else if(objectType.equals(MODE.TEXT)){
-				
-				Text text = (Text)wcObject;			
-				text.draw(gc);
-			}else{
+			else{
 				wcObject.draw(gc);
 			}
 			
@@ -294,9 +277,9 @@ public class BoardGUI {
 		
 		
 		// draw focus of all items selected in the item list
-		gc.setForeground(SALAD.BLACK);
-		gc.setBackground(SALAD.WHITE);
-		gc.setLineWidth(SALAD.DEFAULT_LINE);
+		gc.setForeground(Constants.BLACK);
+		gc.setBackground(Constants.WHITE);
+		gc.setLineWidth(Constants.DEFAULT_LINE);
 		gc.setLineCap(SWT.CAP_ROUND);
 		gc.setFont(wBoard.getBoardFont());
 		

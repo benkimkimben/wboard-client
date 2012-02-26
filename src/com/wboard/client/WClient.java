@@ -4,7 +4,7 @@ import java.lang.reflect.Proxy;
 
 import com.wboard.client.ui.WBoard;
 import com.wboard.common.model.User;
-import com.wboard.common.protocol.ClientProtocol;
+import com.wboard.common.protocol.ServerProtocol;
 
 
 public class WClient {

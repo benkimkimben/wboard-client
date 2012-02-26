@@ -4,6 +4,8 @@
 
 package com.wboard.client.model.drawable;
 
+import java.io.DataInput;
+import java.io.DataOutput;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -119,21 +121,20 @@ public class Drawing extends WClientObject{
 	}
 
 	@Override
-	public void readObject(ObjectInputStream in) throws ClassNotFoundException,
-			IOException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void writeObject(ObjectOutputStream out) throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public int compareTo(WObject o) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void readFields(DataInput arg0) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void write(DataOutput arg0) throws IOException {
+		// TODO Auto-generated method stub
+		
 	}
 }

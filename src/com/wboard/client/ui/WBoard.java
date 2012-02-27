@@ -10,15 +10,15 @@ import org.eclipse.swt.widgets.Canvas;
 
 import com.wboard.client.model.drawable.WClientObject;
 import com.wboard.client.util.Constants;
-import com.wboard.common.model.User;
+import com.wboard.common.model.WUser;
 
 
 
 public class WBoard {
 	public static enum MODE {FREE_SHAPE, SHAPE, SELECT, FACE_COLOR, LINE_COLOR, TEXT, LINE_WIDTH};
 
-	private User user;
-	private List<User> userList;	// user list
+	private WUser user;
+	private List<WUser> userList;	// user list
 
 	private List<WClientObject> WObjectList; // WObject list
 
@@ -39,10 +39,10 @@ public class WBoard {
 	private int lineCap;
 	private Font boardFont;
 
-	public WBoard(User user){
+	public WBoard(WUser user){
 		// initialize
 		this.user = user;
-		userList = new ArrayList<User>();
+		userList = new ArrayList<WUser>();
 		WObjectList = new ArrayList<WClientObject>();
 		
 		
@@ -81,13 +81,13 @@ public class WBoard {
 		
 	/** Getters & Setters **/
 	
-	public User getUser() {
+	public WUser getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+	public void setUser(WUser user) {
 		this.user = user;
 	}
-	public List<User> getUserList() {
+	public List<WUser> getUserList() {
 		return userList;
 	}
 	public List<WClientObject> getWObjectList() {
